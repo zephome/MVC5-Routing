@@ -19,6 +19,26 @@
         <div>
             The action is: @ViewBag.Action
         </div>
+
+        <div>
+            @Html.ActionLink("This is an outgoing URL", "CustomVariable", new { id = "Hello" })
+        </div>
+
+        <div>
+            @Html.ActionLink("This is an outgoing URL", "Index", "Customer")
+        </div>
+
+        <div>
+            @Html.ActionLink("This is an outgoing URL", "Index", "Home", null, new { id = "myAnchorID", @class = "myCSSClass" })
+        </div>
+
+        <div>
+            @Html.ActionLink("This is an outgoing URL", "Index", "Home", "https", "myserver.mydomain.com", "myFragmentName", new { id = "myId" }, new { id = "myAnchorID", @class = "myCSSClass" })
+        </div>
+
+        <div>
+            This is a URL: @Url.Action("Index", "Home", new { id = "MyID" })
+        </div>
     </div>
 </body>
 </html>

@@ -26,29 +26,17 @@ namespace UrlsAndRoutes
 
             routes.MapMvcAttributeRoutes();
 
+            routes.MapRoute("MyRoute", "{controller}/{action}");
+
+            routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
+                        
             routes.MapRoute(
                 "MyRoute", 
-                "{controller}/{action}/{id}/{*catchall}",
+                "{controller}/{action}/{id}",
                 new {
                     controller = "Home",
                     action = "Index",
                     id = UrlParameter.Optional
-                },
-                //new
-                //{
-                //    controller = "^H.*",                                        // 정규식 제약조건
-                //    action = "Index|About",                                     // 여러개의 값을 지정한 제약조건
-                //    httpMethod = new HttpMethodConstraint("GET", "POST"),       // 메서드 제약조건
-                //    id = new RangeRouteConstraint(10, 20),                      // 지정된 범위 제약조건
-                //    id = new CompoundRouteConstraint(new IRouteConstraint[]
-                //    {
-                //        new AlphaRouteConstraint(),
-                //        new MinLengthRouteConstraint(6)
-                //    })
-                //},
-                new[]
-                {
-                    "URLsAndRoutes.Controllers"
                 }
             );
         }
