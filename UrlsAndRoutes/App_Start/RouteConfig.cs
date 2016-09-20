@@ -26,17 +26,28 @@ namespace UrlsAndRoutes
 
             routes.MapMvcAttributeRoutes();
 
-            routes.MapRoute("MyRoute", "{controller}/{action}");
+            routes.Add(new Route("SayHello", new CoustomRouteHandler()));
 
-            routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
-                        
+            routes.Add(new LegacyRoute(
+                "~/articles/Windows_3.1_Overview.html",
+                "~/old/.NET_1.0_Class_Library"));
+
+            //routes.MapRoute("MyRoute", "{controller}/{action}");
+
+            //routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
+
             routes.MapRoute(
-                "MyRoute", 
+                "MyRoute",
                 "{controller}/{action}/{id}",
-                new {
+                new
+                {
                     controller = "Home",
                     action = "Index",
                     id = UrlParameter.Optional
+                },
+                new[]
+                {
+                    "UrlsAndRoutes.Controllers"
                 }
             );
         }
