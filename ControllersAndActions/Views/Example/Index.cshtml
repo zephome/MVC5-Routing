@@ -1,0 +1,19 @@
+﻿@*@model DateTime*@
+
+@{
+    Layout = null;
+}
+
+<h2>Index</h2>
+
+@*The day is: @Model.DayOfWeek*@
+
+<p>
+    The day is: @ViewBag.Date.DayOfWeek<br />
+    The message is: @ViewBag.Message
+</p>
+
+<p>
+    TempData Message: @TempData["Message"]<br />
+    TempData DateTime: @(((DateTime)TempData["Date"]).DayOfWeek)
+</p>
