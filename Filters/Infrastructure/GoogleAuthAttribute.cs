@@ -35,6 +35,7 @@ namespace Filters.Infrastructure
             }
             else
             {
+                // github 자격 증명 수정
                 FormsAuthentication.SignOut();
             }
         }
