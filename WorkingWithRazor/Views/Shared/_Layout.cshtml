@@ -33,12 +33,20 @@
         This is part of the layout
     </div>
 
-    @RenderSection("Footer")
+    @if (IsSectionDefined("Footer"))
+    {
+        @RenderSection("Footer")
+    }
+    else
+    {
+        <div class="layout">
+            This is the default footer
+        </div>
+    }
 
-    <div class="layout">
-        This is part of the layout
-    </div>
+    @RenderSection("scripts", false)
+
     @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>*@
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
 </body>
 </html>
