@@ -7,7 +7,7 @@ namespace HelperMethods.Models
 {
     public class Person
     {
-        public int PersonalId { get; set; }
+        public int PersonId { get; set; }
 
         public string FirstName { get; set; }
 

@@ -3,11 +3,26 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "CreatePerson";
+    Html.EnableClientValidation(false);
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>@ViewBag.Title: @Html.LabelForModel()</h2>
 
-@using (Html.BeginRouteForm("FormRoute",
+@using(Html.BeginRouteForm("FormRoute",
+                            new { },
+                            FormMethod.Post,
+                            new
+                            {
+                                @class = "personClass",
+                                data_formType = "person"
+                            }))
+{
+    @Html.EditorForModel()
+
+    <input type="submit" value="submit" />
+}
+
+@*@using (Html.BeginRouteForm("FormRoute",
                         new
                         {
                         },
@@ -20,24 +35,30 @@
 {
     <div class="dataElem">
         <label>PersonId</label>
-        @*@Html.TextBox("PersonalId")*@
+        @Html.TextBox("PersonalId")
         @Html.TextBoxFor(m => m.PersonalId)
+        @Html.Editor("PersonId")
     </div>
 
     <div class="dataElem">
         <label>First Name</label>
-        @Html.TextBoxFor(m => m.FirstName)
+        @Html.Editor("FirstName")
     </div>
 
     <div class="dataElem">
         <label>Last Name</label>
-        @Html.TextBoxFor(m => m.LastName)
+        @Html.EditorFor(m => m.LastName)
     </div>
 
     <div class="dataElem">
         <label>Role</label>
-        @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetNames(typeof(HelperMethods.Models.Role))))
+        @Html.EditorFor(m => m.Role)
+    </div>
+
+    <div class="dataElem">
+        <label>Birth Date</label>
+        @Html.EditorFor(m => m.BirthDate)
     </div>
 
     <input type="submit" value="submit" />
-}
+}*@
