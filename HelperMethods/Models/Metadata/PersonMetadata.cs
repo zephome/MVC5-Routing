@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HelperMethods.Models.Metadata
+namespace HelperMethods.Models
 {
     [DisplayName("New Person")]
     public class PersonMetadata
