@@ -20,5 +20,11 @@ namespace WorkingWithRazor.Controllers
         {
             return View();
         }
+
+        [ChildActionOnly]
+        public ActionResult Time(DateTime time)
+        {
+            return PartialView(time);
+        }
     }
 }

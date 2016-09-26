@@ -7,4 +7,8 @@
 
 @Html.Partial("MyPartial")
 
+@*강력한 형식의 부분 뷰*@
 @Html.Partial("MyStronglyTypedPartial", new[] { "Apple", "Banana", "Pear" })
+
+@*자식 액션*@
+@Html.Action("Time", new { time = DateTime.Now })
