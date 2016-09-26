@@ -1,22 +1,27 @@
-﻿using System;
+﻿using HelperMethods.Models.Metadata;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace HelperMethods.Models
 {
-    public class Person
+    [MetadataType(typeof(PersonMetadata))]
+    public partial class Person
     {
         public int PersonId { get; set; }
-
+        
         public string FirstName { get; set; }
-
+        
         public string LastName { get; set; }
-
+        
         public DateTime BirthDate { get; set; }
 
         public Address HomeAddress { get; set; }
-
+        
         public bool IsApproved { get; set; }
 
         public Role Role { get; set; }
