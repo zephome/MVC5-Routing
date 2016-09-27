@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace HelperMethods.Models
 {
     [DisplayName("New Person")]
-    public class PersonMetadata
+    public partial class PersonMetadata
     {
         [HiddenInput(DisplayValue = false)]
         public int PersonId { get; set; }
