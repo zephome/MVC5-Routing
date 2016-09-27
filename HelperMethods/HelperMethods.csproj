@@ -145,6 +145,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\DisplayPerson.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Role.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
+    <Content Include="Views\Shared\Boolean.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
