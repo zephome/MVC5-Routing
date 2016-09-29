@@ -7,13 +7,21 @@
 
     AjaxOptions ajaxOpts = new AjaxOptions
     {
-        UpdateTargetId = "tableBody"
+        UpdateTargetId = "tableBody",
+        Url = Url.Action("GetPeopleData", "People"),
+        LoadingElementId = "loading",
+        LoadingElementDuration = 300,
+        Confirm = "Do you wish to request new data?"
     };
 }
 
 <h2>Get People</h2>
 
-<table>
+<div id="loading" class="load" style="display:none">
+    <p>Loading Data...</p>
+</div>
+
+<table width="250">
     <thead>
         <tr>
             <th>First</th>
@@ -27,7 +35,7 @@
     </tbody>
 </table>
 
-@using (Ajax.BeginForm("GetPeopleData", ajaxOpts))
+@using (Ajax.BeginForm(ajaxOpts))
 {
     <div>
         @Html.DropDownList("selectedRole", new SelectList(new[] { "All" }.Concat(Enum.GetNames(typeof(Role)))))
