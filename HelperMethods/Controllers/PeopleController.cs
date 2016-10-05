@@ -23,12 +23,7 @@ namespace HelperMethods.Controllers
             return View();
         }
 
-        public ActionResult GetPeople(string selectedRole = "All")
-        {
-            return View((object)selectedRole);
-        }
-        
-        public PartialViewResult GetPeopleData(string selectedRole = "All")
+        private IEnumerable<Person> GetData(string selectedRole)
         {
             IEnumerable<Person> data = personData;
 
@@ -38,7 +33,35 @@ namespace HelperMethods.Controllers
                 data = personData.Where(p => p.Role == selected);
             }
 
-            return PartialView(data);
+            return data;
+        }
+
+        public JsonResult GetPeopleDataJson(string selectedRole = "All")
+        {
+            IEnumerable<Person> data = GetData(selectedRole);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetPeople(string selectedRole = "All")
+        {
+            return View((object)selectedRole);
+        }
+
+
+        public PartialViewResult GetPeopleData(string selectedRole = "All")
+        {
+            // JSON으로 변경
+            //IEnumerable<Person> data = personData;
+
+            //if (selectedRole != "All")
+            //{
+            //    Role selected = (Role)Enum.Parse(typeof(Role), selectedRole);
+            //    data = personData.Where(p => p.Role == selected);
+            //}
+
+            //return PartialView(data);
+
+            return PartialView(GetData(selectedRole));
         }
     }
 }
