@@ -16,20 +16,34 @@
 }
 
 <script type="text/javascript">
-    function OnBegin() {
-        alert("This is the OnBegin Callback");
-    }
+    //function OnBegin() {
+    //    alert("This is the OnBegin Callback");
+    //}
 
-    function OnSuccess(data) {
-        alert("This is the OnSuccessCallback: " + data);
-    }
+    //function OnSuccess(data) {
+    //    alert("This is the OnSuccessCallback: " + data);
+    //}
 
-    function OnFailure(request, error) {
-        alert("This is the OnFailur Callback: " + error);
-    }
+    //function OnFailure(request, error) {
+    //    alert("This is the OnFailur Callback: " + error);
+    //}
 
-    function OnComplete(request, status) {
-        alert("This is the OnComplete Callback: " + status);
+    //function OnComplete(request, status) {
+    //    alert("This is the OnComplete Callback: " + status);
+    //}
+
+    function processData(data) {
+        var target = $("#tableBody");
+        target.empty();
+
+        for (var i = 0; i < data.length; i++) {
+            var person = data[i];
+            target.append("<tr>" +
+                            "<td>" + person.FirstName + "</td>" +
+                            "<td>" + person.LastName + "</td>" +
+                            "<td>" + person.Role + "</td>" +
+                          "</tr>");
+        }
     }
 </script>
 
@@ -63,7 +77,22 @@
 
 <div>
     <div class="ajaxLink">
-        @Ajax.ActionLink("All", "GetPeopleData", new { selectedRole = "All" }, new AjaxOptions { UpdateTargetId = "tableBody" })
+        @Ajax.ActionLink("All",
+                        "GetPeopleData",
+                        new
+                        {
+                            selectedRole = "All"
+                        },
+                        new AjaxOptions
+                        {
+                            Url = Url.Action("GetPeopleDataJson",
+                                            "People",
+                                            new
+                                            {
+                                                selectedRole = "All"
+                                            }),
+                            OnSuccess = "processData"
+                        })
     </div>
 
     @foreach (string role in Enum.GetNames(typeof(Role)))
@@ -77,11 +106,13 @@
                         },
                         new AjaxOptions
                         {
-                            UpdateTargetId = "tableBody",
-                            OnBegin = "OnBegin",
-                            OnFailure = "OnFailure",
-                            OnSuccess = "OnSuccess",
-                            OnComplete = "OnComplete"
+                            Url = Url.Action("GetPeopleDataJson",
+                                            "People",
+                                            new
+                                            {
+                                                selectedRole = role
+                                            }),
+                            OnSuccess = "processData"
                         })
         </div>
     }
