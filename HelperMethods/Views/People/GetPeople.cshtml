@@ -15,6 +15,24 @@
     };
 }
 
+<script type="text/javascript">
+    function OnBegin() {
+        alert("This is the OnBegin Callback");
+    }
+
+    function OnSuccess(data) {
+        alert("This is the OnSuccessCallback: " + data);
+    }
+
+    function OnFailure(request, error) {
+        alert("This is the OnFailur Callback: " + error);
+    }
+
+    function OnComplete(request, status) {
+        alert("This is the OnComplete Callback: " + status);
+    }
+</script>
+
 <h2>Get People</h2>
 
 <div id="loading" class="load" style="display:none">
@@ -43,4 +61,28 @@
     </div>
 }
 
+<div>
+    <div class="ajaxLink">
+        @Ajax.ActionLink("All", "GetPeopleData", new { selectedRole = "All" }, new AjaxOptions { UpdateTargetId = "tableBody" })
+    </div>
 
+    @foreach (string role in Enum.GetNames(typeof(Role)))
+    {
+        <div class="ajaxLink">
+            @Ajax.ActionLink(role,
+                        "GetPeopleData",
+                        new
+                        {
+                            selectedRole = role
+                        },
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "tableBody",
+                            OnBegin = "OnBegin",
+                            OnFailure = "OnFailure",
+                            OnSuccess = "OnSuccess",
+                            OnComplete = "OnComplete"
+                        })
+        </div>
+    }
+</div>
