@@ -11,10 +11,10 @@ namespace MvcModels.Controllers
     {
         private Person[] personData =
         {
-            new Person { FirstName = "Adam", LastName = "Freeman", Role = Role.Admin },
-            new Person { FirstName = "Jacqui", LastName = "Griffyth", Role = Role.User },
-            new Person { FirstName = "John", LastName = "Smith", Role = Role.User },
-            new Person { FirstName = "Anne", LastName = "Jones", Role = Role.User }
+            new Person { PersonId = 1, FirstName = "Adam", LastName = "Freeman", Role = Role.Admin },
+            new Person { PersonId = 2, FirstName = "Jacqui", LastName = "Griffyth", Role = Role.User },
+            new Person { PersonId = 3, FirstName = "John", LastName = "Smith", Role = Role.User },
+            new Person { PersonId = 4, FirstName = "Anne", LastName = "Jones", Role = Role.User }
         };
 
         // GET: Home
