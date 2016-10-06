@@ -11,7 +11,7 @@
         Url = Url.Action("GetPeopleData", "People"),
         LoadingElementId = "loading",
         LoadingElementDuration = 300,
-        Confirm = "Do you wish to request new data?"
+        OnSuccess = "processData"
     };
 }
 
@@ -85,7 +85,7 @@
                         },
                         new AjaxOptions
                         {
-                            Url = Url.Action("GetPeopleDataJson",
+                            Url = Url.Action("GetPeopleData",
                                             "People",
                                             new
                                             {
@@ -106,7 +106,7 @@
                         },
                         new AjaxOptions
                         {
-                            Url = Url.Action("GetPeopleDataJson",
+                            Url = Url.Action("GetPeopleData",
                                             "People",
                                             new
                                             {
