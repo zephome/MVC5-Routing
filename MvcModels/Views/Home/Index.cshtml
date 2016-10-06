@@ -1,0 +1,15 @@
+﻿@model MvcModels.Models.Person
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <label>ID: </label>@Html.DisplayFor(m => m.PersonId)
+    <label>First Name: </label>@Html.DisplayFor(m => m.FirstName)
+    <label>Last Name: </label>@Html.DisplayFor(m => m.LastName)
+    <label>Role: </label>@Html.DisplayFor(m => m.Role)
+</div>
+
