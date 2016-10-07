@@ -18,11 +18,27 @@ namespace MvcModels.Controllers
         };
 
         // GET: Home
-        public ActionResult Index(int id)
+        public ActionResult Index(int id = 1)
         {
             Person dataItem = personData.Where(p => p.PersonId == id).First();
 
             return View(dataItem);
+        }
+
+        public ActionResult CreatePerson()
+        {
+            return View(new Person());
+        }
+
+        [HttpPost]
+        public ActionResult CreatePerson(Person model)
+        {
+            return View("Index", model);
+        }
+
+        public ActionResult DisplaySummary([Bind(Prefix = "HomeAddress", Exclude = "Country")]AddressSummary summary)
+        {
+            return View(summary);
         }
     }
 }
