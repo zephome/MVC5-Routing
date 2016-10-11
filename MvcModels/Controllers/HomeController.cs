@@ -48,9 +48,32 @@ namespace MvcModels.Controllers
             return View(names);
         }
 
-        public ActionResult Address(IList<AddressSummary> addresses)
+        public ActionResult Address(FormCollection formData)
         {
-            addresses = addresses ?? new List<AddressSummary>();
+            // 모델바인딩 수동 호출
+            //addresses = addresses ?? new List<AddressSummary>();
+
+            //return View(addresses);
+            IList<AddressSummary> addresses = new List<AddressSummary>();
+
+
+            //try
+            //{
+            //    UpdateModel(addresses, formData);
+            //}
+            //catch (InvalidOperationException ex)
+            //{
+            //    // 사용자에게 피드백
+            //}
+
+            if (TryUpdateModel(addresses, formData))
+            {
+                // 정상처리
+            }
+            else
+            {
+                // 사용자에게 피드백
+            }
 
             return View(addresses);
         }
