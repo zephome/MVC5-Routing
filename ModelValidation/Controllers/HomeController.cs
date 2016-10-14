@@ -17,7 +17,29 @@ namespace ModelValidation.Controllers
         [HttpPost]
         public ViewResult MakeBooking(Appointment appt)
         {
-            return View("Complete", appt);
+            if (string.IsNullOrEmpty(appt.ClientName))
+            {
+                ModelState.AddModelError("ClientName", "Please enter your name");
+            }
+
+            if (ModelState.IsValidField("Date") && DateTime.Now > appt.Date)
+            {
+                ModelState.AddModelError("Date", "Please enter date in the future");
+            }
+
+            if (!appt.TermAccepted)
+            {
+                ModelState.AddModelError("TermsAccepted", "You must accept the term");
+            }
+
+            if (ModelState.IsValid)
+            {
+                return View("Complete", appt);
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
