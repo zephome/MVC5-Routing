@@ -11,42 +11,16 @@ namespace ModelValidation.Models
     public class Appointment
     {
         [Required]
+        [StringLength(10, MinimumLength = 3)]
         public string ClientName { get; set; }
 
         [DataType(DataType.Date)]
         //[Required(ErrorMessage = "Please enter a date")]
-        [FutureDate(ErrorMessage = "Please enter a date in the future (Attribute)")]
+        //[FutureDate(ErrorMessage = "Please enter a date in the future (Attribute)")]
         public DateTime Date { get; set; }
 
         //[Range(typeof(bool), "true", "true", ErrorMessage = "You must accept the terms")]
-        [MustBeTrue(ErrorMessage = "You must accept the terms (Attribute)")]
+        //[MustBeTrue(ErrorMessage = "You must accept the terms (Attribute)")]
         public bool TermAccepted { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            List<ValidationResult> errors = new List<ValidationResult>();
-
-            if (string.IsNullOrEmpty(ClientName))
-            {
-                errors.Add(new ValidationResult("Please enter your name"));
-            }
-
-            if (DateTime.Now > Date)
-            {
-                errors.Add(new ValidationResult("Please enter a date in the future"));
-            }
-
-            if (errors.Count == 0 && ClientName == "Joe" && Date.DayOfWeek == DayOfWeek.Monday)
-            {
-                errors.Add(new ValidationResult("You must accept the terms"));
-            }
-
-            if (!TermAccepted)
-            {
-                errors.Add(new ValidationResult("You must accept the terms"));
-            }
-
-            return errors;
-        }
     }
 }
